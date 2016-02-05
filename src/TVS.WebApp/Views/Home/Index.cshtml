@@ -1,0 +1,197 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/ASP-NET-Banners-01.png" alt="ASP.NET" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Screen your tenants using our services we keep us updated.
+                        <a class="btn btn-default btn-danger" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+                            Start Now!
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01.png" alt="Visual Studio" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        <iframe width="210" height="157"
+                                src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0"></iframe>
+
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01.png" alt="Package Management" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01.png" alt="Microsoft Azure" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="myCarouselSmall" class="carousel slide hidden-lg hidden-md hidden-sm" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarouselSmall" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarouselSmall" data-slide-to="1"></li>
+        <li data-target="#myCarouselSmall" data-slide-to="2"></li>
+        <li data-target="#myCarouselSmall" data-slide-to="3"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/ASP-NET-Banners-01Vert.png" alt="ASP.NET" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Screen your tenants using our services we keep us updated.
+                        <a class="btn btn-default btn-danger" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+                            Start Now!
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01Vert.png" alt="Visual Studio" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        <iframe width="210" height="157"
+                                src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0"></iframe>
+
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01Vert.png" alt="Package Management" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/ASP-NET-Banners-01Vert.png" alt="Microsoft Azure" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <p>
+                        Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
+                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
+                            Learn More
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row text-center" id="startBtnDiv">
+    <h1>All set? Let's get started.</h1>
+    <a class="btn btn-lg btn-danger" href="#category" data-toggle="collapse" onclick="$('#startBtnDiv').toggle(); $('#startBtnDiv').animate({ scrollTop: $(this).offset().top }, 800)">
+        Start Now!
+    </a>
+</div>
+
+<div id="category" class="row collapse fade text-center">
+    <h2 class="row text-center col-md-12" style="margin:25px">Tell us who you are?</h2>
+    <br />
+    <div class="col-md-3 img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/landlord.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <h1 class="text-center">Landlord</h1>
+        <div class="text-center">
+            <a class="btn btn-info" href="">
+                Register
+            </a>
+            <a class="btn btn-default" href="">
+                Login
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3  img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/tenant.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <h1 class="text-center">Tenant</h1>
+        <div class="text-center">
+            <a class="btn btn-info" href="">
+                Register
+            </a>
+            <a class="btn btn-default" href="">
+                Login
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3  img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/rwa.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <h1 class="text-center">Society</h1>
+
+        <div class="text-center">
+            <a class="btn btn-info" href="">
+                Register
+            </a>
+            <a class="btn btn-default" href="">
+                Login
+            </a>
+        </div>
+
+    </div>
+</div>

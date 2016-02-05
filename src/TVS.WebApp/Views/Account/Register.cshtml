@@ -1,0 +1,565 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"].</h2>
+
+
+
+@section AddToHead{
+    <link href="@Url.Content("~/css/wizard.css")" rel="stylesheet" type="text/css" />
+    <script src="~/js/wizard.js"></script>
+}
+
+@*<link href="~/wwwroot/css/wizard.css" rel="stylesheet" />*@
+
+
+
+
+
+
+
+
+
+<div id="category" class="row text-center">
+    <h2 class="row text-center col-md-12" style="margin:25px">Tell us who you are?</h2>
+    <br />
+    <div class="col-md-3 img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/landlord.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <a class="btn btn-lg btn-success" style="margin:15px" data-toggle="collapse">
+            Register as a Landlord.
+        </a>
+
+    </div>
+    <div class="col-md-3  img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/tenant.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <a class="btn btn-lg btn-success" style="margin:15px" data-toggle="collapse">
+            Register as a Tenant.
+        </a>
+    </div>
+    <div class="col-md-3  img-rounded table-bordered" style="margin:25px; padding:25px">
+        <div class="text-center">
+            <img src="~/images/rwa.png" alt="tenants" style="width:100%;height:100%">
+        </div>
+
+        <a class="btn btn-lg btn-success" style="margin:15px" data-toggle="collapse">
+            Register as a Society/RWA.
+        </a>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-category-pane">
+
+    <div class="collapse" id="tab1">
+        <div class="container" style="margin:25px">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <p>Create an account</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                        <p>Your personal details</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                        <p>Your property details</p>
+                    </div>
+                </div>
+            </div>
+            <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
+
+                <div class="text-center">
+                    <img src="~/images/landlord.png" style="width:100px; height:100px" alt="tenants">
+                </div>
+
+                <h2 class="text-center">Register as Landlord</h2>
+
+
+                <div class="row setup-content" id="step-1">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+
+                            <Div class="alert alert-info text-center" role="alert">If you are also a tenant, you can later link your tenant profile with this account.</Div>
+                            <hr />
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.Email" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.Email" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.Password" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.Password" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.ConfirmPassword" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn btn-default">Register</button>
+                                    </div>
+                                </div>*@
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-2">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.FirstName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.FirstName" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.MiddleName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.MiddleName" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.MiddleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.LastName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.LastName" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Gender" class="col-md-2 control-label"></label>
+                                <div class="col-md-10 selectContainer">
+                                    <select asp-for="Gender" class="form-control" name="Gender" asp-items="@ViewBag.GenderList">
+                                        @*<option value=""></option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>*@
+                                    </select>
+                                    @*<span asp-validation-for="Gender" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.Mobile" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.Mobile" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.Landline" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.Landline" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.Landline" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.PresentAddress.FullAddress" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.PresentAddress.FullAddress" class="form-control textarea" />
+                                    <span asp-validation-for="LandlordVM.PresentAddress.FullAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.PresentAddress.City" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.PresentAddress.City" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.PresentAddress.City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LandlordVM.PresentAddress.PinCode" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="LandlordVM.PresentAddress.PinCode" class="form-control" />
+                                    <span asp-validation-for="LandlordVM.PresentAddress.PinCode" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 3</h3>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="collapse" id="tab2">
+        <div class="container" style="margin:25px">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#tstep-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <p>Create an account</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#tstep-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                        <p>Your personal details</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#tstep-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                        <p>Your property details</p>
+                    </div>
+                </div>
+            </div>
+            <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
+
+                <div class="text-center">
+                    <img src="~/images/tenant.png" style="width:100px; height:100px" alt="tenants">
+                </div>
+
+                <h2 class="text-center">Register as Tenant</h2>
+
+
+                <div class="row setup-content" id="tstep-1">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+
+                            <Div class="alert alert-warning text-center" role="alert">If you are also a landlord, you can later link your landlord profile with this account.</Div>
+                            <hr />
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.Email" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.Email" class="form-control" />
+                                    <span asp-validation-for="TenantVM.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.Password" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.Password" class="form-control" />
+                                    <span asp-validation-for="TenantVM.Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.ConfirmPassword" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="TenantVM.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn btn-default">Register</button>
+                                    </div>
+                                </div>*@
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="tstep-2">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.FirstName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.FirstName" class="form-control" />
+                                    <span asp-validation-for="TenantVM.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.MiddleName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.MiddleName" class="form-control" />
+                                    <span asp-validation-for="TenantVM.MiddleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.LastName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.LastName" class="form-control" />
+                                    <span asp-validation-for="TenantVM.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Gender" class="col-md-2 control-label"></label>
+                                <div class="col-md-10 selectContainer">
+                                    <select asp-for="Gender" class="form-control" name="Gender" asp-items="@ViewBag.GenderList">
+                                        @*<option value=""></option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>*@
+                                    </select>
+                                    @*<span asp-validation-for="Gender" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="TenantVM.Mobile" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.Mobile" class="form-control" />
+                                    <span asp-validation-for="TenantVM.Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.Landline" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.Landline" class="form-control" />
+                                    <span asp-validation-for="TenantVM.Landline" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="TenantVM.PresentAddress.FullAddress" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.PresentAddress.FullAddress" class="form-control textarea" />
+                                    <span asp-validation-for="TenantVM.PresentAddress.FullAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.PresentAddress.City" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.PresentAddress.City" class="form-control" />
+                                    <span asp-validation-for="TenantVM.PresentAddress.City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TenantVM.PresentAddress.PinCode" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="TenantVM.PresentAddress.PinCode" class="form-control" />
+                                    <span asp-validation-for="TenantVM.PresentAddress.PinCode" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="tstep-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 3</h3>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="collapse" id="tab3">
+        <div class="container" style="margin:25px">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#rstep-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <p>Create an account</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#rstep-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                        <p>Your personal details</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#rstep-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                        <p>Your property details</p>
+                    </div>
+                </div>
+            </div>
+            <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
+
+                <div class="text-center">
+                    <img src="~/images/rwa.png" style="width:100px; height:100px" alt="tenants">
+                </div>
+
+                <h2 class="text-center">Register as Society or RWA</h2>
+
+
+                <div class="row setup-content" id="rstep-1">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+
+                            <hr />
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.Email" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.Email" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.Password" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.Password" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.ConfirmPassword" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn btn-default">Register</button>
+                                    </div>
+                                </div>*@
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="rstep-2">
+                    <div class="col-xs-12">
+                        <Div class="alert alert-info text-center" role="alert">This section should be filled by the head of RWA or Society.</Div>
+
+                        <div class="col-md-12">
+
+                            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.FirstName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.FirstName" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.MiddleName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.MiddleName" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.MiddleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.LastName" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.LastName" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Gender" class="col-md-2 control-label"></label>
+                                <div class="col-md-10 selectContainer">
+                                    <select asp-for="Gender" class="form-control" name="Gender" asp-items="@ViewBag.GenderList">
+                                        @*<option value=""></option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>*@
+                                    </select>
+                                    @*<span asp-validation-for="Gender" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.Mobile" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.Mobile" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.Landline" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.Landline" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.Landline" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.PresentAddress.FullAddress" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.PresentAddress.FullAddress" class="form-control textarea" />
+                                    <span asp-validation-for="SocietyVM.PresentAddress.FullAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.PresentAddress.City" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.PresentAddress.City" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.PresentAddress.City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocietyVM.PresentAddress.PinCode" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="SocietyVM.PresentAddress.PinCode" class="form-control" />
+                                    <span asp-validation-for="SocietyVM.PresentAddress.PinCode" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="rstep-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 3</h3>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+
+}

@@ -1,0 +1,72 @@
+@model TVS.WebApp.Models.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdhaarCard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdhaarCard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificationMark)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdentificationMark)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Initial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Initial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PAN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PAN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlaceOfBirth)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>
