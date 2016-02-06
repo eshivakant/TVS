@@ -17,6 +17,8 @@ paths.css = paths.webroot + "css/**/*.css";
 paths.minCss = paths.webroot + "css/**/*.min.css";
 paths.concatJsDest = paths.webroot + "js/site.min.js";
 paths.concatCssDest = paths.webroot + "css/site.min.css";
+paths.app = paths.webroot + "app/";
+paths.srcapp = "./app/";
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);
@@ -43,3 +45,24 @@ gulp.task("min:css", function () {
 });
 
 gulp.task("min", ["min:js", "min:css"]);
+
+
+
+gulp.task("cleanappp", function (cb) {
+    rimraf(paths.app, cb);
+
+});
+
+
+gulp.task("copyapp", ["cleanappp"], function () {
+    var app = {
+        "controllers": "controllers/peopleController.js",
+        "services": "services/peopleServices*.js",
+        "/": "app.js"
+    }
+
+    for (var destinationDir in app) {
+        gulp.src(paths.srcapp + app[destinationDir])
+          .pipe(gulp.dest(paths.app + destinationDir));
+    }
+});
