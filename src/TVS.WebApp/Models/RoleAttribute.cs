@@ -24,7 +24,9 @@ namespace TVS.WebApp.Models
 
         [StringLength(500)]
         public string Description { get; set; }
-               
+
+        [StringLength(10)]
+        public string ValueType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonAttribute> PersonAttributes { get; set; }

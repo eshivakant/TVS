@@ -13,6 +13,8 @@ namespace TVS.WebApp.Models
 
         public long PersonId { get; set; }
 
+        public double Rent { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime OccupiedFrom { get; set; }
 

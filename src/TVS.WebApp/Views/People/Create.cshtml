@@ -1,3 +1,4 @@
+@using TVS.WebApp.Misc
 @model TVS.WebApp.Models.Person
 
 @{
@@ -11,74 +12,152 @@
         <h4>Person</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+
+
         <div class="form-group">
-            <label asp-for="AdhaarCard" class="col-md-2 control-label"></label>
+            <div class="col-md-2 control-label">
+                Initial
+            </div>
+
             <div class="col-md-10">
-                <input asp-for="AdhaarCard" class="form-control" />
-                <span asp-validation-for="AdhaarCard" class="text-danger" />
+                <input asp-for="Initial" class="form-control"/>
+                <span asp-validation-for="Initial" class="text-danger" />
             </div>
         </div>
+
         <div class="form-group">
-            <label asp-for="DateOfBirth" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger" />
+            <div class="col-md-2 control-label">
+                First Name
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FirstName" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger" />
             </div>
         </div>
+
         <div class="form-group">
-            <label asp-for="IdentificationMark" class="col-md-2 control-label"></label>
+            <div class="col-md-2 control-label">
+                Middle Name
+            </div>
+
+            <div class="col-md-10">
+                <input asp-for="MiddleName" class="form-control"/>
+                <span asp-validation-for="MiddleName" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Last Name
+            </div>
+            
+            <div class="col-md-10">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Date Of Birth
+            </div>
+            <div class="col-md-10">
+                <input asp-for="DateOfBirth" class="form-control glyphicon-calendar" />
+                <span asp-validation-for="DateOfBirth" class="text-danger" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Place Of Birth
+            </div>
+            <div class="col-md-10">
+                <input asp-for="PlaceOfBirth" class="form-control"/>
+                <span asp-validation-for="PlaceOfBirth" class="text-danger" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Identification Mark
+            </div>
+
             <div class="col-md-10">
                 <input asp-for="IdentificationMark" class="form-control" />
                 <span asp-validation-for="IdentificationMark" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Initial" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Initial" class="form-control" />
-                <span asp-validation-for="Initial" class="text-danger" />
+            <div class="col-md-2 control-label">
+                PAN Card Number
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="MiddleName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="MiddleName" class="form-control" />
-                <span asp-validation-for="MiddleName" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PAN" class="col-md-2 control-label"></label>
+
             <div class="col-md-10">
                 <input asp-for="PAN" class="form-control" />
                 <span asp-validation-for="PAN" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="PlaceOfBirth" class="col-md-2 control-label"></label>
+            <div class="col-md-2 control-label">
+                Adhaar Card Number
+            </div>
+
             <div class="col-md-10">
-                <input asp-for="PlaceOfBirth" class="form-control" />
-                <span asp-validation-for="PlaceOfBirth" class="text-danger" />
+                <input asp-for="AdhaarCard" class="form-control" />
+                <span asp-validation-for="AdhaarCard" class="text-danger" />
             </div>
         </div>
+
+        @for (int i = 0; i < Model.PersonAttributes.Count; i++)
+        {
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    @Model.PersonAttributes[i].RoleAttribute.Description
+                </div>
+                <div class="hidden">
+                    <input asp-for="@Model.PersonAttributes[i].RoleAttributeId" class="form-control"/>
+                </div>
+                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType=="string")
+                {
+                    <div class="col-md-10">
+                        <input asp-for="@Model.PersonAttributes[i].StringValue" class="form-control"/>
+                    </div>
+                }
+                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "date")
+                {
+                    <div class="col-md-10">
+                        <input type="text" asp-for="@Model.PersonAttributes[i].DateValue" class="form-control glyphicon-calendar" />
+                    </div>
+                }
+                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "int")
+                {
+                    <div class="col-md-10">
+                        <input asp-for="@Model.PersonAttributes[i].IntValue" class="form-control" />
+                    </div>
+                }
+                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "float")
+                {
+                    <div class="col-md-10">
+                        <input asp-for="@Model.PersonAttributes[i].FloatValue" class="form-control" />
+                    </div>
+                }
+            </div>
+        }
+
+
+        @for (int i = 0; i < Model.AddressOccupations.Count; i++)
+        {
+            @await Html.PartialAsync("_Address", Model.AddressOccupations[i].Address);
+        }
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
     </div>
 </form>
 
@@ -90,4 +169,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function() {
+            $(".glyphicon-calendar").datepicker({
+                dateFormat: "@Constants.DateFormatCore"
+            });
+        });
+    </script>
 }

@@ -9,7 +9,7 @@ namespace TVS.WebApp.Models
     {
         public long Id { get; set; }
 
-        public long AttributeId { get; set; }
+        public long RoleAttributeId { get; set; }
 
         public long PersonId { get; set; }
 

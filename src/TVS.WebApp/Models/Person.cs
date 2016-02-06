@@ -1,3 +1,6 @@
+using System.Reflection.Metadata;
+using TVS.WebApp.Misc;
+
 namespace TVS.WebApp.Models
 {
     using System;
@@ -11,11 +14,14 @@ namespace TVS.WebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            AddressOccupations = new HashSet<AddressOccupation>();
-            AddressOwnerships = new HashSet<AddressOwnership>();
-            DomainAspnetPersonMaps = new HashSet<DomainAspnetPersonMap>();
-            PersonAttributes = new HashSet<PersonAttribute>();
-            PersonRatings = new HashSet<PersonRating>();
+            // ReSharper disable VirtualMemberCallInContructor
+            AddressOccupations = new List<AddressOccupation>();
+            AddressOwnerships = new List<AddressOwnership>();
+            DomainAspnetPersonMaps = new List<DomainAspnetPersonMap>();
+            PersonAttributes = new List<PersonAttribute>();
+            PersonRatings = new List<PersonRating>();
+            // ReSharper restore VirtualMemberCallInContructor
+
         }
 
         public long Id { get; set; }
@@ -36,6 +42,7 @@ namespace TVS.WebApp.Models
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = Constants.DateFormat,ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         [Required]
@@ -52,18 +59,18 @@ namespace TVS.WebApp.Models
         public string IdentificationMark { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AddressOccupation> AddressOccupations { get; set; }
+        public virtual IList<AddressOccupation> AddressOccupations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AddressOwnership> AddressOwnerships { get; set; }
+        public virtual IList<AddressOwnership> AddressOwnerships { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DomainAspnetPersonMap> DomainAspnetPersonMaps { get; set; }
+        public virtual IList<DomainAspnetPersonMap> DomainAspnetPersonMaps { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonAttribute> PersonAttributes { get; set; }
+        public virtual IList<PersonAttribute> PersonAttributes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonRating> PersonRatings { get; set; }
+        public virtual IList<PersonRating> PersonRatings { get; set; }
     }
 }
