@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
@@ -8,21 +10,23 @@ using TVS.WebApp.Models;
 namespace TVS.WebApp.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Person")]
-    public class PersonController : Controller
+    [Route("api/Tenant")]
+    [Authorize(Roles = "Tenant")]
+    public class TenantController : Controller
     {
         private ApplicationDbContext _context;
 
-        public PersonController(ApplicationDbContext context)
+        public TenantController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public Person GetPerson([FromQuery]string role)
+        [AllowAnonymous]
+        public Person GetTenant([FromQuery]string role)
         {
             //var role = "Tenant";
-            var person = new Person(){FirstName = "Shivakant"};
+            var person = new Person(){DateOfBirth = DateTime.Today};
 
             if (role.ToLower() == "tenant")
             {
@@ -35,28 +39,70 @@ namespace TVS.WebApp.Controllers
                     var pa = new PersonAttribute();
                     pa.RoleAttributeId = tenantroleAttribute.Id;
                     pa.RoleAttribute = tenantroleAttribute;
-                    person.PersonAttributes.Add(pa);
-                    person.AddressOccupations = new List<AddressOccupation>
+                    if (tenantroleAttribute.ValueType == "date")
                     {
-                        new AddressOccupation {Address = new Address {City = "Lucknow"}}
-                    };
+                        pa.DateValue = DateTime.Today;
+                    }
+
+                    person.PersonAttributes.Add(pa);
                 }
+
+                person.AddressOccupations = new List<AddressOccupation>
+                    {
+                        new AddressOccupation {Address = new Address (), OccupiedFrom = DateTime.Today, OccupiedTo = DateTime.Today}
+                    };
 
             }
 
             return person;
         }
 
-        //// GET: api/Api
-        //[HttpGet]
-        //public IEnumerable<Person> GetPeople()
-        //{
-        //    return _context.People;
-        //}
+        // POST: api/Api
+        [HttpPost]
+        public IActionResult PostTenant([FromBody] Person person)
+        {
+            if (!ModelState.IsValid)
+            {
+                return HttpBadRequest(ModelState);
+            }
 
-        // GET: api/Api/5
-        [HttpGet("{id}", Name = "GetPerson")]
-        public IActionResult GetPerson([FromRoute] long id)
+            if (ModelState.IsValid)
+            {
+                //insert new addresses
+                foreach (var addressOccupation in person.AddressOccupations)
+                {
+                    if (addressOccupation.Address.Id == 0)
+                    {
+                        _context.Addresses.Add(addressOccupation.Address);
+                    }
+                    _context.SaveChanges();
+                    addressOccupation.AddressId = addressOccupation.Address.Id;
+                }
+
+
+                var roleAttributes =
+                    _context.RoleAttributes.Where(
+                        a => person.PersonAttributes.Select(p => p.RoleAttributeId).Contains(a.Id));
+
+                var emptyRoleAttributes = roleAttributes.Where(r => string.IsNullOrEmpty(r.Attribute)).Select(a => a.Id);
+
+                var attributesToRemove = person.PersonAttributes.Where(a => emptyRoleAttributes.Contains(a.RoleAttributeId) || (a.StringValue == null && a.DateValue == null && a.FloatValue == null && a.IntValue == null)).ToList();
+
+                attributesToRemove.ForEach(a => person.PersonAttributes.Remove(a));
+
+
+
+                _context.People.Add(person);
+                _context.SaveChanges();
+            }
+
+            return CreatedAtRoute("GetPerson", new { id = person.Id }, person);
+        }
+
+
+
+        [HttpGet("{id}")]
+        public IActionResult GetTenant([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
@@ -75,7 +121,7 @@ namespace TVS.WebApp.Controllers
 
         // PUT: api/Api/5
         [HttpPut("{id}")]
-        public IActionResult PutPerson(long id, [FromBody] Person person)
+        public IActionResult PutTenant(long id, [FromBody] Person person)
         {
             if (!ModelState.IsValid)
             {
@@ -108,38 +154,11 @@ namespace TVS.WebApp.Controllers
             return new HttpStatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // POST: api/Api
-        [HttpPost]
-        public IActionResult PostPerson([FromBody] Person person)
-        {
-            if (!ModelState.IsValid)
-            {
-                return HttpBadRequest(ModelState);
-            }
-
-            _context.People.Add(person);
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (PersonExists(person.Id))
-                {
-                    return new HttpStatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("GetPerson", new { id = person.Id }, person);
-        }
+       
 
         // DELETE: api/Api/5
         [HttpDelete("{id}")]
-        public IActionResult DeletePerson(long id)
+        public IActionResult DeleteTenant(long id)
         {
             if (!ModelState.IsValid)
             {

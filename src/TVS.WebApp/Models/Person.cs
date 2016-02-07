@@ -42,7 +42,7 @@ namespace TVS.WebApp.Models
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = Constants.DateFormat,ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime DateOfBirth { get; set; }
 
         [Required]

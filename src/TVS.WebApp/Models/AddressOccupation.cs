@@ -6,7 +6,6 @@ namespace TVS.WebApp.Models
     [Table("AddressOccupation")]
     public partial class AddressOccupation
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
         public long AddressId { get; set; }

@@ -5,11 +5,16 @@
         .module('tvsApp')
         .controller('peopleController', peopleController);
 
-    peopleController.$inject = ['$scope', 'NewPerson'];
+    peopleController.$inject = ['$scope', 'NewPerson','SavePerson'];
 
-    function peopleController($scope, NewPerson) {
+    function peopleController($scope, NewPerson, SavePerson) {
        
         $scope.newPerson = NewPerson.query();
+
+        $scope.savePerson=function(person) {
+            var result = SavePerson(person);
+
+        }
 
         $scope.addNewAddressOccpation = function () {
             var newAddress = new function () {
