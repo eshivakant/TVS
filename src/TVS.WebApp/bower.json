@@ -8,6 +8,14 @@
     "jquery-validation-unobtrusive": "3.2.4",
     "angular": "*",
     "angular-route": "*",
-    "angular-resource": "*"
+    "angular-resource": "*",
+    "angular-animate": "*",
+    "angular-aria": "*",
+    "angular-messages": "*",
+    "angular-material": "*",
+    "angular-moment": "*"
+  },
+  "resolutions": {
+    "angular": "1.5.0"
   }
 }

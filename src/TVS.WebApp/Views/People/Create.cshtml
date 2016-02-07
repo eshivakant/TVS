@@ -1,5 +1,5 @@
 @using TVS.WebApp.Misc
-@model TVS.WebApp.Models.Person
+
 
 @{
     ViewData["Title"] = "Create";
@@ -16,21 +16,20 @@
 </div>*@
 
 
-<form asp-action="Create">
-    <div class="form-horizontal">
+
+    <div class="form-horizontal"  ng-app="tvsApp" ng-controller="peopleController">
         <h4>Person</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
 
 
-        <div class="form-group">
+        <div class="form-group" >
             <div class="col-md-2 control-label">
                 Initial
             </div>
 
             <div class="col-md-10">
-                <input asp-for="Initial" class="form-control"/>
-                <span asp-validation-for="Initial" class="text-danger" />
+                <input ng-model="newPerson.Initial" class="form-control"/>
             </div>
         </div>
 
@@ -39,8 +38,7 @@
                 First Name
             </div>
             <div class="col-md-10">
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger" />
+                <input ng-model="newPerson.FirstName"  class="form-control" />
             </div>
         </div>
 
@@ -50,8 +48,7 @@
             </div>
 
             <div class="col-md-10">
-                <input asp-for="MiddleName" class="form-control"/>
-                <span asp-validation-for="MiddleName" class="text-danger" />
+                <input ng-model="newPerson.MiddleName" class="form-control"/>
             </div>
         </div>
 
@@ -61,8 +58,7 @@
             </div>
             
             <div class="col-md-10">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger" />
+                <input ng-model="newPerson.LastName"  class="form-control" />
             </div>
         </div>
 
@@ -71,8 +67,7 @@
                 Date Of Birth
             </div>
             <div class="col-md-10">
-                <input asp-for="DateOfBirth" class="form-control glyphicon-calendar" />
-                <span asp-validation-for="DateOfBirth" class="text-danger" />
+                <md-datepicker ng-model="newPerson.DateOfBirth"></md-datepicker>
             </div>
         </div>
 
@@ -82,8 +77,7 @@
                 Place Of Birth
             </div>
             <div class="col-md-10">
-                <input asp-for="PlaceOfBirth" class="form-control"/>
-                <span asp-validation-for="PlaceOfBirth" class="text-danger" />
+                <input ng-model="newPerson.PlaceOfBirth"  class="form-control"/>
             </div>
         </div>
 
@@ -94,8 +88,7 @@
             </div>
 
             <div class="col-md-10">
-                <input asp-for="IdentificationMark" class="form-control" />
-                <span asp-validation-for="IdentificationMark" class="text-danger" />
+                <input ng-model="newPerson.IdentificationMark"  class="form-control" />
             </div>
         </div>
         <div class="form-group">
@@ -104,8 +97,7 @@
             </div>
 
             <div class="col-md-10">
-                <input asp-for="PAN" class="form-control" />
-                <span asp-validation-for="PAN" class="text-danger" />
+                <input ng-model="newPerson.PAN"  class="form-control" />
             </div>
         </div>
         <div class="form-group">
@@ -114,61 +106,105 @@
             </div>
 
             <div class="col-md-10">
-                <input asp-for="AdhaarCard" class="form-control" />
-                <span asp-validation-for="AdhaarCard" class="text-danger" />
+                <input ng-model="newPerson.AdhaarCard" class="form-control"/>
             </div>
         </div>
 
-        @for (int i = 0; i < Model.PersonAttributes.Count; i++)
-        {
-            <div class="form-group">
-                <div class="col-md-2 control-label">
-                    @Model.PersonAttributes[i].RoleAttribute.Description
-                </div>
-                <div class="hidden">
-                    <input asp-for="@Model.PersonAttributes[i].RoleAttributeId" class="form-control"/>
-                </div>
-                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType=="string")
-                {
-                    <div class="col-md-10">
-                        <input asp-for="@Model.PersonAttributes[i].StringValue" class="form-control"/>
-                    </div>
-                }
-                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "date")
-                {
-                    <div class="col-md-10">
-                        <input type="text" asp-for="@Model.PersonAttributes[i].DateValue" class="form-control glyphicon-calendar" />
-                    </div>
-                }
-                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "int")
-                {
-                    <div class="col-md-10">
-                        <input asp-for="@Model.PersonAttributes[i].IntValue" class="form-control" />
-                    </div>
-                }
-                @if (@Model.PersonAttributes[i].RoleAttribute.ValueType == "float")
-                {
-                    <div class="col-md-10">
-                        <input asp-for="@Model.PersonAttributes[i].FloatValue" class="form-control" />
-                    </div>
-                }
+
+
+
+
+        <div class="form-group" ng-repeat="attr in newPerson.PersonAttributes">
+            <div class="col-md-2 control-label">
+                {{attr.RoleAttribute.Description}}
             </div>
-        }
+            @*<div class="hidden">
+                <input asp-for="@Model.PersonAttributes[i].RoleAttributeId" class="form-control" />
+            </div>*@
+           
+            <div class="col-md-10" ng-show="attr.RoleAttribute.ValueType=='string'">
+                <input ng-model="attr.StringValue" class="form-control" />
+            </div>
+            <div class="col-md-10" ng-show="attr.RoleAttribute.ValueType=='int'">
+                <input ng-model="attr.IntValue" class="form-control" />
+            </div>
+            <div class="col-md-10" ng-show="attr.RoleAttribute.ValueType=='float'">
+                <input ng-model="attr.FloatValue" class="form-control" />
+            </div>
+            <div  ng-show="attr.RoleAttribute.ValueType=='date'" >
+                @*<input ng-model="attr.DateValue" class="form-control glyphicon-calendar" onfocus="addDatePicker()" />*@
+                <md-datepicker ng-model="attr.DateValue"></md-datepicker>
+            </div>
+
+        </div>
 
 
-        @for (int i = 0; i < Model.AddressOccupations.Count; i++)
-        {
-            @await Html.PartialAsync("_Address", Model.AddressOccupations[i].Address);
-        }
+        <div ng-repeat="oc in newPerson.AddressOccupations">
+            <div class="form-group">
+                <div class="col-md-2 control-label">Address Line 1</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.AddressLine1" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Address Line 2</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.AddressLine2" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Address Line 3</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.AddressLine3" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">City</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.City" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">State</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.State" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Pin Code</div>
+                <div class="col-md-10">
+                    <input ng-model="oc.Address.PostCode"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Occupied From</div>
+                <div class="col-md-10">
+                    <md-datepicker ng-model="oc.OccupiedFrom"></md-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Occupied To</div>
+                <div class="col-md-10">
+                    <md-datepicker ng-model="oc.OccupiedTo"></md-datepicker>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button ng-click="addNewAddressOccpation()">add another</button>
+            <button ng-click="removeAddress($index)">delete</button>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default"/>
             </div>
         </div>
 
+      
+
     </div>
-</form>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
@@ -182,11 +218,5 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <script>
-        $(function() {
-            $(".glyphicon-calendar").datepicker({
-                dateFormat: "@Constants.DateFormatCore"
-            });
-        });
-    </script>
+  
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
@@ -52,12 +53,16 @@ namespace TVS.WebApp.Controllers
                 pa.RoleAttributeId = tenantroleAttribute.Id;
                 pa.RoleAttribute = tenantroleAttribute;
                 person.PersonAttributes.Add(pa);
-                person.AddressOccupations = new List<AddressOccupation>
+                if (tenantroleAttribute.ValueType == "date")
                 {
-                    new AddressOccupation {Address = new Address {City = "Lucknow"}}
-                };
+                    pa.DateValue=DateTime.Today;
+                }
             }
+            person.AddressOccupations = new List<AddressOccupation>
+            {
+                new AddressOccupation {Address = new Address(),OccupiedFrom = DateTime.Today, OccupiedTo = DateTime.Today}
 
+            };
             return View(person);
         }
 
