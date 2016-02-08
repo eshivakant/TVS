@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
@@ -59,11 +60,11 @@ namespace TVS.WebApp.Controllers
 
         // POST: api/Api
         [HttpPost]
-        public IActionResult PostTenant([FromBody] Person person)
+        public async Task<bool> PostTenant([FromBody] Person person)
         {
             if (!ModelState.IsValid)
             {
-                return HttpBadRequest(ModelState);
+                return false;
             }
 
             if (ModelState.IsValid)
@@ -93,10 +94,11 @@ namespace TVS.WebApp.Controllers
 
 
                 _context.People.Add(person);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
-            return CreatedAtRoute("GetPerson", new { id = person.Id }, person);
+            //return CreatedAtRoute("GetTenant", new { id = person.Id }, person);
+            return true;
         }
 
 

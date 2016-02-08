@@ -4,7 +4,7 @@
 
     personServices.factory('NewPerson', ['$resource',
       function ($resource) {
-          return $resource('/api/Person/', {}, {
+          return $resource('/api/Tenant/', {}, {
               query: { method: 'GET', params: {role:'Tenant'}, isArray: false }
           });
       }]);
@@ -16,10 +16,10 @@
               var deferredObject = $q.defer();
 
               $http.post(
-                  '/api/Person', person
+                  '/api/Tenant', person
               ).
               success(function (data) {
-                  if (data == "True") {
+                  if (data == true) {
                       deferredObject.resolve({ success: true });
                   } else {
                       deferredObject.resolve({ success: false });

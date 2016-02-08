@@ -19,7 +19,7 @@
                   '/api/Tenant', person
               ).
               success(function (data) {
-                  if (data == "True") {
+                  if (data == true) {
                       deferredObject.resolve({ success: true });
                   } else {
                       deferredObject.resolve({ success: false });

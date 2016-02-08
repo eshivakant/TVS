@@ -118,6 +118,27 @@ namespace TVS.WebApp.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterTenant()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterLandlord()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterSociety()
+        {
+            return View();
+        }
         //
         // POST: /Account/Register
         [HttpPost]
@@ -157,7 +178,7 @@ namespace TVS.WebApp.Controllers
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
-                        return RedirectToAction(nameof(HomeController.LandlordHome), "Home");
+                        return RedirectToAction("RegisterLandlord");
                     }
                     AddErrors(result);
 
@@ -195,7 +216,7 @@ namespace TVS.WebApp.Controllers
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
 
-                        return RedirectToAction(nameof(HomeController.TenantHome), "Home");
+                        return RedirectToAction("RegisterTenant");
                     }
                     AddErrors(result);
 
@@ -227,15 +248,13 @@ namespace TVS.WebApp.Controllers
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
-                        return RedirectToAction(nameof(HomeController.SocietyHome), "Home");
+                        return RedirectToAction("RegisterSociety");
                     }
                     AddErrors(result);
 
                 }
 
             }
-
-            ViewBag.GenderList = (new[] { "Male", "Female" }).Select(i => new SelectListItem { Text = i, Value = i });
 
             // If we got this far, something failed, redisplay form
             return View(model);

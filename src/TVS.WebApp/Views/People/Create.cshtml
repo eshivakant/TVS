@@ -195,20 +195,23 @@
             <button ng-click="removeAddress($index)">delete</button>
         </div>
 
+        <div class="alert alert-info text-center" ng-show="registrationFailure">
+            Failed!!!!
+        </div>
+
+        <div class="alert alert-info text-center" ng-show="registrationSuccess">
+            Success!!!!
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button ng-click="savePerson(newPerson)">Create</button>
             </div>
         </div>
 
-      
+       
 
     </div>
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -217,6 +220,5 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
   
 }

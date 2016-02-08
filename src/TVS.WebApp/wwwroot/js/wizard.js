@@ -48,28 +48,40 @@ $(document).ready(function () {
 
     var tabs = $('.btn-success');
 
+    if (tabs != undefined && tabs.length > 0)
     tabs[0].onclick = function (e) {
         $('#category').slideUp();
 
-        $("#tab1").fadeIn();
-        primaryButtons[0].click();
+        var tab = $("#tab1");
+        if (tab != undefined) {
+            tab.fadeIn();
+            primaryButtons[0].click();
+        }
         //alert('1');
     };
 
+    if (tabs != undefined && tabs.length >1)
     tabs[1].onclick = function (e) {
         $('#category').slideUp();
 
-        $("#tab2").fadeIn();
-        primaryButtons[1].click();
+        var tab = $("#tab2");
+        if (tab != undefined) {
+            tab.fadeIn();
+            primaryButtons[1].click();
+        }
         //alert('2');
     };
 
+    if (tabs != undefined && tabs.length >2)
     tabs[2].onclick = function (e) {
         $('#category').slideUp();
 
-        $("#tab3").fadeIn();
-        primaryButtons[2].click();
-        //alert('3');
+        var tab = $("#tab3");
+        if (tab != undefined) {
+            tab.fadeIn();
+            primaryButtons[2].click();
+            //alert('3');
+        }
     };
 
     primaryButtons[0].click();
