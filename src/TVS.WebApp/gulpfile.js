@@ -56,8 +56,8 @@ gulp.task("cleanappp", function (cb) {
 
 gulp.task("copyapp", ["cleanappp"], function () {
     var app = {
-        "controllers": "controllers/peopleController.js",
-        "services": "services/peopleServices*.js",
+        "controllers": "controllers/*.js",
+        "services": "services/**.js",
         "/": "app.js"
     }
 

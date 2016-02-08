@@ -1,12 +1,13 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../app/app.js" />
-/// <reference path="../app/controllers/peopleController.js" />
-/// <reference path="../app/services/personService.js" />
+/// <reference path="../app/controllers/peoplecontroller - copy.js" />
+/// <reference path="../app/controllers/tenantcontroller.js" />
+/// <reference path="../app/services/peopleServices.js" />
 /// <reference path="../gruntfile.js" />
 /// <reference path="../gulpfile.js" />
 /// <reference path="app.js" />
 /// <reference path="app/app.js" />
-/// <reference path="app/controllers/peoplecontroller.js" />
+/// <reference path="app/controllers/landlordcontroller.js" />
 /// <reference path="app/services/peopleservices.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/wizard.js" />

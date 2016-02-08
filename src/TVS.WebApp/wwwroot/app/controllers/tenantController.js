@@ -1,24 +1,28 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular
         .module('tvsApp')
-        .controller('peopleController', peopleController);
+        .controller('tenantController', tenantController);
         
-    peopleController.$inject = ['$scope', 'NewPerson','SavePerson'];
+    tenantController.$inject = ['$scope', 'NewTenant','NewLandlord', 'SaveTenant'];
 
-    function peopleController($scope, NewPerson, SavePerson) {
+    function tenantController($scope, NewTenant,NewLandlord, SaveTenant) {
        
-        $scope.newPerson = NewPerson.query();
+        $scope.newPerson = NewTenant.query();
         $scope.registrationFailure = false;
         $scope.registrationSuccess = false;
 
         $scope.savePerson=function(person) {
-            SavePerson(person)
+            SaveTenant(person)
             .then(function (result) {
                 if (result.success) {
                     $scope.registrationSuccess = true;
                     $scope.registrationFailure = false;
+                    for (var i = 0; i < person.AddressOccupations.length; i++) {
+                        person.AddressOccupations[i].previousLandlord = NewLandlord.query();
+                    }
+
                 } else {
                     $scope.registrationSuccess = false;
                     $scope.registrationFailure = true;
@@ -27,9 +31,11 @@
 
         }
 
+
         $scope.reset=function() {
              $scope.registrationSuccess = false;
-                    $scope.registrationFailure = false;
+             $scope.registrationFailure = false;
+             $scope.$apply();
         }
 
         $scope.addNewAddressOccpation = function () {

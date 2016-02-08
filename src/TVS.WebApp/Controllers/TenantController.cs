@@ -67,34 +67,47 @@ namespace TVS.WebApp.Controllers
                 return false;
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                //insert new addresses
-                foreach (var addressOccupation in person.AddressOccupations)
+                if (ModelState.IsValid)
                 {
-                    if (addressOccupation.Address.Id == 0)
+                    //insert new addresses
+                    foreach (var addressOccupation in person.AddressOccupations)
                     {
-                        _context.Addresses.Add(addressOccupation.Address);
+                        if (addressOccupation.Address.Id == 0)
+                        {
+                            _context.Addresses.Add(addressOccupation.Address);
+                        }
+                        _context.SaveChanges();
+                        addressOccupation.AddressId = addressOccupation.Address.Id;
                     }
-                    _context.SaveChanges();
-                    addressOccupation.AddressId = addressOccupation.Address.Id;
+
+
+                    var roleAttributes =
+                        _context.RoleAttributes.Where(
+                            a => person.PersonAttributes.Select(p => p.RoleAttributeId).Contains(a.Id));
+
+                    var emptyRoleAttributes =
+                        roleAttributes.Where(r => string.IsNullOrEmpty(r.Attribute)).Select(a => a.Id);
+
+                    var attributesToRemove =
+                        person.PersonAttributes.Where(
+                            a =>
+                                emptyRoleAttributes.Contains(a.RoleAttributeId) ||
+                                (a.StringValue == null && a.DateValue == null && a.FloatValue == null &&
+                                 a.IntValue == null)).ToList();
+
+                    attributesToRemove.ForEach(a => person.PersonAttributes.Remove(a));
+
+
+
+                    _context.People.Add(person);
+                    await _context.SaveChangesAsync();
                 }
-
-
-                var roleAttributes =
-                    _context.RoleAttributes.Where(
-                        a => person.PersonAttributes.Select(p => p.RoleAttributeId).Contains(a.Id));
-
-                var emptyRoleAttributes = roleAttributes.Where(r => string.IsNullOrEmpty(r.Attribute)).Select(a => a.Id);
-
-                var attributesToRemove = person.PersonAttributes.Where(a => emptyRoleAttributes.Contains(a.RoleAttributeId) || (a.StringValue == null && a.DateValue == null && a.FloatValue == null && a.IntValue == null)).ToList();
-
-                attributesToRemove.ForEach(a => person.PersonAttributes.Remove(a));
-
-
-
-                _context.People.Add(person);
-                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return false;
             }
 
             //return CreatedAtRoute("GetTenant", new { id = person.Id }, person);

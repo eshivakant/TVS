@@ -3,18 +3,18 @@
 
     angular
         .module('tvsApp')
-        .controller('peopleController', peopleController);
+        .controller('landlordController', landlordController);
         
-    peopleController.$inject = ['$scope', 'NewPerson','SavePerson'];
+    landlordController.$inject = ['$scope', 'NewLandlord','SaveLandlord'];
 
-    function peopleController($scope, NewPerson, SavePerson) {
+    function landlordController($scope, NewLandlord, SaveLandlord) {
        
-        $scope.newPerson = NewPerson.query();
+        $scope.newPerson = NewLandlord.query();
         $scope.registrationFailure = false;
         $scope.registrationSuccess = false;
 
         $scope.savePerson=function(person) {
-            SavePerson(person)
+            SaveLandlord(person)
             .then(function (result) {
                 if (result.success) {
                     $scope.registrationSuccess = true;
@@ -30,7 +30,7 @@
         $scope.reset=function() {
              $scope.registrationSuccess = false;
              $scope.registrationFailure = false;
-            $scope.$apply();
+             $scope.$apply();
         }
 
         $scope.addNewAddressOccpation = function () {
@@ -43,13 +43,13 @@
                 this.PostCode = $scope.newPostCode;
             }
 
-            var newOccpuation= new function() {
-                this.OccupiedFrom = $scope.addNewAddressOccpationOccupiedFrom;
-                this.OccupiedTo = $scope.addNewAddressOccpationOccupiedTo;
+            var newOwnership= new function() {
+                this.OwnedFrom = $scope.addNewAddressOccpationOwnedFrom;
+                this.OwnedTo = $scope.addNewAddressOwnershipOwnedTo;
                 this.Address = newAddress;
             }
 
-            $scope.newPerson.AddressOccupations.push(newOccpuation);
+            $scope.newPerson.AddressOwnerships.push(newOwnership);
             
         }
     }

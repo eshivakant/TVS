@@ -6,7 +6,6 @@ namespace TVS.WebApp.Models
     [Table("AddressOwnership")]
     public partial class AddressOwnership
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
         public long AddressId { get; set; }

@@ -2,14 +2,15 @@
     'use strict';
     var personServices = angular.module('peopleServices', ['ngResource', 'ngMaterial', 'angularMoment']);
 
-    personServices.factory('NewPerson', ['$resource',
-      function ($resource) {
-          return $resource('/api/Tenant/', {}, {
-              query: { method: 'GET', params: {role:'Tenant'}, isArray: false }
-          });
-      }]);
+    
+    personServices.factory('NewTenant', ['$resource',
+     function ($resource) {
+         return $resource('/api/Tenant/', {}, {
+             query: { method: 'GET', params: { role: 'Tenant' }, isArray: false }
+         });
+     }]);
 
-    personServices.factory('SavePerson', ['$http', '$q',
+    personServices.factory('SaveTenant', ['$http', '$q',
       function ($http, $q) {
           return function (person) {
 
@@ -32,4 +33,41 @@
               return deferredObject.promise;
           }
       }]);
+
+
+
+
+
+    personServices.factory('NewLandlord', ['$resource',
+     function ($resource) {
+         return $resource('/api/Landlord/', {}, {
+             query: { method: 'GET', params: { role: 'Landlord' }, isArray: false }
+         });
+     }]);
+
+    personServices.factory('SaveLandlord', ['$http', '$q',
+      function ($http, $q) {
+          return function (person) {
+
+              var deferredObject = $q.defer();
+
+              $http.post(
+                  '/api/Landlord', person
+              ).
+              success(function (data) {
+                  if (data == true) {
+                      deferredObject.resolve({ success: true });
+                  } else {
+                      deferredObject.resolve({ success: false });
+                  }
+              }).
+              error(function () {
+                  deferredObject.resolve({ success: false });
+              });
+
+              return deferredObject.promise;
+          }
+      }]);
+
+
 })();
