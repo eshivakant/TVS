@@ -27,6 +27,11 @@
 
         }
 
+        $scope.reset=function() {
+             $scope.registrationSuccess = false;
+                    $scope.registrationFailure = false;
+        }
+
         $scope.addNewAddressOccpation = function () {
             var newAddress = new function () {
                 this.AddressLine1 = $scope.newAddressLine1;

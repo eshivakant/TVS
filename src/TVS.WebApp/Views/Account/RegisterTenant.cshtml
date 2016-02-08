@@ -19,7 +19,7 @@
 <div class="select-category-pane">
 
 
-    <div id="tab2">
+    <div id="MainWizardTab" ng-app="tvsApp" ng-controller="peopleController">
         <div class="container" style="margin:25px">
             <div class="stepwizard">
                 <div class="stepwizard-row setup-panel">
@@ -59,7 +59,7 @@
 
 
 
-                            <div class="form-horizontal" ng-app="tvsApp" ng-controller="peopleController">
+                            <div class="form-horizontal" >
                          
                                 <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
 
@@ -179,63 +179,6 @@
 
                                 </div>
 
-
-                                <div ng-repeat="oc in newPerson.AddressOccupations">
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Address Line 1</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.AddressLine1" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Address Line 2</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.AddressLine2" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Address Line 3</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.AddressLine3" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">City</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.City" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">State</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.State" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Pin Code</div>
-                                        <div class="col-md-10">
-                                            <input ng-model="oc.Address.PostCode" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Occupied From</div>
-                                        <div class="col-md-10">
-                                            <md-datepicker ng-model="oc.OccupiedFrom"></md-datepicker>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-2 control-label">Occupied To</div>
-                                        <div class="col-md-10">
-                                            <md-datepicker ng-model="oc.OccupiedTo"></md-datepicker>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button ng-click="addNewAddressOccpation()">add another</button>
-                                    <button ng-click="removeAddress($index)">delete</button>
-                                </div>
-
                                 <div class="alert alert-info text-center" ng-show="registrationFailure">
                                     Failed!!!!
                                 </div>
@@ -243,23 +186,6 @@
                                 <div class="alert alert-info text-center" ng-show="registrationSuccess">
                                     Success!!!!
                                 </div>
-
-                                @*<div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <button ng-click="savePerson(newPerson)">Create</button>
-                                    </div>
-                                </div>*@
-
-
-
-
-
-
-
-
-
-
-
 
 
                                 <button class="btn btn-success btn-lg pull-right"  ng-click="savePerson(newPerson)" ng-hide="registrationSuccess">Save</button>
@@ -272,10 +198,75 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
 
-                           
+                            <div ng-repeat="oc in newPerson.AddressOccupations">
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Address Line 1</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.AddressLine1" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Address Line 2</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.AddressLine2" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Address Line 3</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.AddressLine3" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">City</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.City" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">State</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.State" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Pin Code</div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.Address.PostCode" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Occupied From</div>
+                                    <div class="col-md-10">
+                                        <md-datepicker ng-model="oc.OccupiedFrom"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Occupied To</div>
+                                    <div class="col-md-10">
+                                        <md-datepicker ng-model="oc.OccupiedTo"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button ng-click="addNewAddressOccpation()">add another</button>
+                                <button ng-click="removeAddress($index)">delete</button>
+                            </div>
+
+                            <div class="alert alert-info text-center" ng-show="registrationFailure">
+                                Failed!!!!
+                            </div>
+
+                            <div class="alert alert-info text-center" ng-show="registrationSuccess">
+                                Success!!!!
+                            </div>
 
 
-                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+
+
+                            <button class="btn btn-success btn-lg pull-right" ng-click="savePerson(newPerson)" ng-hide="registrationSuccess">Save</button>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" ng-show="registrationSuccess">Next</button>
                         </div>
                     </div>
                 </div>

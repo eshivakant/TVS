@@ -40,6 +40,10 @@ $(document).ready(function () {
 
         if (isValid)
             nextStepWizard.removeAttr('disabled').trigger('click');
+
+        if (angular.element($('#MainWizardTab')).scope() != undefined)
+            angular.element($('#MainWizardTab')).scope().reset();
+
     });
 
     $('div.setup-panel div a.btn-primary').click();
@@ -55,7 +59,8 @@ $(document).ready(function () {
         var tab = $("#tab1");
         if (tab != undefined) {
             tab.fadeIn();
-            primaryButtons[0].click();
+            if (primaryButtons[0] != undefined)
+                primaryButtons[0].click();
         }
         //alert('1');
     };
@@ -67,7 +72,8 @@ $(document).ready(function () {
         var tab = $("#tab2");
         if (tab != undefined) {
             tab.fadeIn();
-            primaryButtons[1].click();
+            if (primaryButtons[1] != undefined)
+                primaryButtons[1].click();
         }
         //alert('2');
     };
@@ -79,7 +85,8 @@ $(document).ready(function () {
         var tab = $("#tab3");
         if (tab != undefined) {
             tab.fadeIn();
-            primaryButtons[2].click();
+            if (primaryButtons[2] != undefined)
+                primaryButtons[2].click();
             //alert('3');
         }
     };

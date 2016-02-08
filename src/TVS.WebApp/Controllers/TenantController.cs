@@ -50,7 +50,7 @@ namespace TVS.WebApp.Controllers
 
                 person.AddressOccupations = new List<AddressOccupation>
                     {
-                        new AddressOccupation {Address = new Address (), OccupiedFrom = DateTime.Today, OccupiedTo = DateTime.Today}
+                        new AddressOccupation {Address = new Address {AddressLine1 = "Line 1", City = "City", PostCode = "Pin"}, OccupiedFrom = DateTime.Today, OccupiedTo = DateTime.Today}
                     };
 
             }
