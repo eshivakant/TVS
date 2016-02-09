@@ -46,6 +46,7 @@
                    if (result.success) {
                        $scope.registrationSuccess = true;
                        $scope.registrationFailure = false;
+                       window.location = "/Home/LandlordHome";
                    } else {
                        $scope.registrationSuccess = false;
                        $scope.registrationFailure = true;
