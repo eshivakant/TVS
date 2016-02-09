@@ -1,7 +1,32 @@
 ﻿@{
     ViewData["Title"] = "My Account [Tenant]";
 }
+
+
+@section AddToHead
+{
+<link href="~/css/starrating.css" rel="stylesheet" />
+    <script src="~/app/controllers/ratingscontroller.js"></script>
+}
+
 <h2>Welcome to your account account page</h2>
 <h3>You can manage your account from here</h3>
 
+<div ng-app="tvsApp" ng-controller="RatingController as rating" class="container">
+    <h1>Your overall reputation</h1>
+    <div star-rating ng-model="rating.rating1" max="10" on-rating-select="rating.rateFunction(rating)"></div>
+    @*<star-rating ng-model="rating.rating2" readonly="rating.isReadonly"></star-rating>
+    <label>
+        <input type="checkbox" ng-model="rating.isReadonly" />
+        Is Readonly
+    </label>
+
+    <div><strong>Rating 1:</strong> {{rating.rating1}}</div>
+    <div><strong>Rating 2:</strong> {{rating.rating2}}</div>*@
+
+  
+</div>
+
+
 <p>Go buddy go!</p>
+

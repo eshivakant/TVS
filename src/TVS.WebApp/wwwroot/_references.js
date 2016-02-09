@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../app/app.js" />
-/// <reference path="../app/controllers/peoplecontroller - copy.js" />
+/// <reference path="../app/controllers/landlordController.js" />
+/// <reference path="../app/controllers/ratingscontroller.js" />
 /// <reference path="../app/controllers/tenantcontroller.js" />
 /// <reference path="../app/services/peopleServices.js" />
 /// <reference path="../gruntfile.js" />
@@ -8,6 +9,8 @@
 /// <reference path="app.js" />
 /// <reference path="app/app.js" />
 /// <reference path="app/controllers/landlordcontroller.js" />
+/// <reference path="app/controllers/ratingscontroller.js" />
+/// <reference path="app/controllers/tenantController.js" />
 /// <reference path="app/services/peopleservices.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/wizard.js" />
