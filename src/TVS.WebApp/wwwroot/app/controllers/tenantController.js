@@ -5,9 +5,9 @@
         .module('tvsApp')
         .controller('tenantController', tenantController);
         
-    tenantController.$inject = ['$scope', 'NewTenant','NewLandlord', 'SaveTenant'];
+    tenantController.$inject = ['$scope', 'NewTenant', 'NewLandlord', 'SaveTenant', 'SaveLandlords'];
 
-    function tenantController($scope, NewTenant,NewLandlord, SaveTenant) {
+    function tenantController($scope, NewTenant, NewLandlord, SaveTenant, SaveLandlords) {
        
         $scope.newPerson = NewTenant.query();
         $scope.registrationFailure = false;
@@ -31,11 +31,45 @@
 
         }
 
+        $scope.savePreviousLandlords = function (person) {
+            var landlords = [];
+            for (var i = 0; i < person.AddressOccupations.length; i++) {
+                var landlord = person.AddressOccupations[i].previousLandlord;
+                landlord.AddressOwnerships = [];
+                landlord.PlaceOfBirth = "NA";
+                $scope.addNewAddressOwnership(landlord, person.AddressOccupations[i].Address, person.AddressOccupations[i].OccupiedFrom, person.AddressOccupations[i].OccupiedTo);
+                landlords.push(landlord);
+            }
+
+            SaveLandlords(landlords)
+               .then(function (result) {
+                   if (result.success) {
+                       $scope.registrationSuccess = true;
+                       $scope.registrationFailure = false;
+                   } else {
+                       $scope.registrationSuccess = false;
+                       $scope.registrationFailure = true;
+                   }
+               });
+         
+        }
+
 
         $scope.reset=function() {
              $scope.registrationSuccess = false;
              $scope.registrationFailure = false;
              $scope.$apply();
+        }
+
+        $scope.addNewAddressOwnership = function (person, address, ownedFrom, ownedTo) {
+            var newOwnership= new function() {
+                this.OwnedFrom = ownedFrom;
+                this.OwnedTo = ownedTo;
+                this.Address = address;
+            }
+
+            person.AddressOwnerships.push(newOwnership);
+            
         }
 
         $scope.addNewAddressOccpation = function () {

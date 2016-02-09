@@ -70,4 +70,32 @@
       }]);
 
 
+    personServices.factory('SaveLandlords', ['$http', '$q',
+      function ($http, $q) {
+          return function (landlords) {
+
+              var deferredObject = $q.defer();
+              
+              for (var i = 0; i < landlords.length; i++) {
+
+                  $http.post(
+                          '/api/Landlord', landlords[i]
+                      ).
+                      success(function(data) {
+                          if (data == true) {
+                              deferredObject.resolve({ success: true });
+                          } else {
+                              deferredObject.resolve({ success: false });
+                          }
+                      }).
+                      error(function() {
+                          deferredObject.resolve({ success: false });
+                      });
+
+              }
+
+              return deferredObject.promise;
+          }
+      }]);
+
 })();
