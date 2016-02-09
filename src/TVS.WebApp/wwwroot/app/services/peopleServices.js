@@ -98,4 +98,32 @@
           }
       }]);
 
+    personServices.factory('SaveTenants', ['$http', '$q',
+     function ($http, $q) {
+         return function (tenants) {
+
+             var deferredObject = $q.defer();
+
+             for (var i = 0; i < tenants.length; i++) {
+
+                 $http.post(
+                         '/api/Tenant', tenants[i]
+                     ).
+                     success(function (data) {
+                         if (data == true) {
+                             deferredObject.resolve({ success: true });
+                         } else {
+                             deferredObject.resolve({ success: false });
+                         }
+                     }).
+                     error(function () {
+                         deferredObject.resolve({ success: false });
+                     });
+
+             }
+
+             return deferredObject.promise;
+         }
+     }]);
+
 })();

@@ -72,7 +72,7 @@
             
         }
 
-        $scope.addNewAddressOccpation = function () {
+        $scope.addNewAddressOccupation = function () {
             var newAddress = new function () {
                 this.AddressLine1 = $scope.newAddressLine1;
                 this.AddressLine2 = $scope.newAddressLine2;

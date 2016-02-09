@@ -261,7 +261,7 @@
                             </div>
 
                             <div>
-                                <button ng-click="addNewAddressOccpation()">add another</button>
+                                <button ng-click="addNewAddressOwnership()">add another</button>
                                 <button ng-click="removeAddress($index)">delete</button>
                             </div>
 
@@ -283,8 +283,82 @@
                 <div class="row setup-content" id="step-3">
                     <div class="col-xs-12">
                         <div class="col-md-12">
-                            <h3> Step 3</h3>
-                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                            <div ng-repeat="oc in newPerson.AddressOwnerships" style="margin: 25px">
+                                <div>
+                                    <span>Who is your tenant at following address OR who was your last tenant at this address</span>
+                                    <span>{{oc.Address.AddressLine1}}</span>&nbsp;
+                                    <span>{{oc.Address.AddressLine2}}</span>&nbsp;
+                                    <span>{{oc.Address.AddressLine3}}</span>&nbsp;
+                                    <span>{{oc.Address.City}}</span>&nbsp;
+                                    <span>{{oc.Address.State}}</span>&nbsp;
+                                    <span>{{oc.Address.PostCode}}</span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">
+                                        Initial
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.previousTenant.Initial" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">
+                                        First Name
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.previousTenant.FirstName" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">
+                                        Middle Name
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.previousTenant.MiddleName" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">
+                                        Last Name
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.previousTenant.LastName" class="form-control"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">
+                                        Rent Paid
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <input ng-model="oc.rent" class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="alert alert-danger text-center" ng-show="registrationFailure">
+                                Failed!!!!
+                            </div>
+
+                            <div class="alert alert-success text-center" ng-show="registrationSuccess">
+                                Success!!!! All done mate!
+                            </div>
+
+
+
+                            <button class="btn btn-success btn-lg pull-right" ng-click="savePreviousTenants(newPerson)" ng-hide="registrationSuccess">Save</button>
                         </div>
                     </div>
                 </div>

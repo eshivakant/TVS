@@ -12,7 +12,7 @@ namespace TVS.WebApp.Controllers
 {
     [Produces("application/json")]
     [Route("api/Tenant")]
-    [Authorize(Roles = "Tenant")]
+    [Authorize(Roles = "Landlord,Tenant")]
     public class TenantController : Controller
     {
         private ApplicationDbContext _context;
