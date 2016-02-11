@@ -8,35 +8,77 @@
         .md-datepicker-calendar-pane {
             z-index: 1151;
         }
-    </style>
-}
 
+    </style>
+
+    <link href="~/css/infocard.css" rel="stylesheet" />
+}
 
 
 <div class="container"  ng-app="tvsApp" ng-controller="tenantController">
 
 
 
-<h2>Reviews</h2>
 
-<div  style="background: lightgray">
+
+    <div style="background: lightgray">
 
         <table>
             <tr>
 
-                    <td style="width: 80%"><input class="form-control pull-right" style="margin: 10px;" placeholder="basic search..."/></td>
-                    <td>
-                        <button type="button" class="btn btn-primary" style="margin: 10px" data-toggle="modal" data-target="#myModal">Search</button>
-                    </td>
-                    <td> <button type="button" class="btn btn-danger" style="margin: 10px" data-toggle="modal" data-target="#myModal">Advanced Search</button></td>
+                <td style="width: 80%"><input class="form-control pull-right" style="margin: 5px;" placeholder="basic search..." /></td>
+                <td>
+                    <button type="button" class="btn btn-primary" style="margin: 5px" data-toggle="modal" data-target="#myModal">Search</button>
+                </td>
+                <td> <button type="button" class="btn btn-danger" style="margin: 5px" data-toggle="modal" data-target="#myModal">Advanced Search</button></td>
 
             </tr>
+
         </table>
- </div>
+
+    </div>
 
 
 
-    <!-- Modal -->
+
+
+<div class="row layout-margin-md">
+    <div class="[ col-sm-6 col-md-3 col-lg-2]"  ng-repeat="person in searchResult">
+        <div class="[ info-card ]">
+            <img style="width: 100%" src="https://www.icsi.berkeley.edu/icsi/sites/default/files/staff_photos/generic_avatar.jpg"/>
+            <div class="[ info-card-details ] animate">
+                <div class="[ info-card-header ]">
+                    <h1> <span>{{person.FirstName}}</span>&nbsp;<span>{{person.MiddleName}}</span><br /><span>{{person.LastName}}</span> </h1>
+                    <h3> DOB: {{person.DateOfBirth}} </h3>
+                </div>
+                <div class="[ info-card-detail ]">
+                    <!-- Description -->
+                    <p>{{person.FirstName}} has a start rating of 5. He was born in {{person.BirthPlace}} on {{person.DateOfBirth}}. He has not negative reputation yet.</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/rem.mcintosh" class="[ social-icon facebook ] animate"><span class="fa fa-facebook"></span></a>
+
+                        <a href="https://twitter.com/Mouse0270" class="[ social-icon twitter ] animate"><span class="fa fa-twitter"></span></a>
+
+                        <a href="https://github.com/mouse0270" class="[ social-icon github ] animate"><span class="fa fa-github-alt"></span></a>
+
+                        <a href="https://plus.google.com/u/0/115077481218689845626/posts" class="[ social-icon google-plus ] animate"><span class="fa fa-google-plus"></span></a>
+
+                        <a href="www.linkedin.com/in/remcintosh/" class="[ social-icon linkedin ] animate"><span class="fa fa-linkedin"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -44,7 +86,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title alert alert-info fa fa-search">Please fill the form below to search for the person. Please note that due to personal security reasons we can only show the person if an exact match is found. If you cannot find the person in our database, you can always request more about hime using buttons provided.</h4>
+                    <h5 class="alert alert-info">Please fill the form below to search for the person. Please note that due to personal security reasons we can only show the person if an exact match is found. If you cannot find the person in our database, you can always request more about hime using buttons provided.</h5>
                 </div>
                 <div class="modal-body">
 
@@ -170,7 +212,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Search..</button>
+                    <button type="button" class="btn btn-danger"  data-dismiss="modal" ng-click="searchTenants(newPerson)">Search..</button>
                 </div>
             </div>
 

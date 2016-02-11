@@ -126,4 +126,29 @@
          }
      }]);
 
+    personServices.factory('SearchTenants', ['$http', '$q',
+     function ($http, $q) {
+         return function (tenant) {
+
+             var deferredObject = $q.defer();
+
+                 $http.post(
+                         '/Reviews/Search', tenant
+                     ).
+                     success(function (data) {
+                         if (typeof (data) == "object") {
+                             deferredObject.resolve({ success: true, data:data });
+                         } else {
+                             deferredObject.resolve({ success: false });
+                         }
+                     }).
+                     error(function () {
+                         deferredObject.resolve({ success: false });
+                     });
+
+            
+
+             return deferredObject.promise;
+         }
+     }]);
 })();

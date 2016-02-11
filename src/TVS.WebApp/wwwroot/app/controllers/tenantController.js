@@ -5,9 +5,9 @@
         .module('tvsApp')
         .controller('tenantController', tenantController);
         
-    tenantController.$inject = ['$scope', 'NewTenant', 'NewLandlord', 'SaveTenant', 'SaveLandlords'];
+    tenantController.$inject = ['$scope', 'NewTenant', 'NewLandlord', 'SaveTenant', 'SaveLandlords','SearchTenants'];
 
-    function tenantController($scope, NewTenant, NewLandlord, SaveTenant, SaveLandlords) {
+    function tenantController($scope, NewTenant, NewLandlord, SaveTenant, SaveLandlords, SearchTenants) {
        
         $scope.newPerson = NewTenant.query();
         $scope.registrationFailure = false;
@@ -91,6 +91,25 @@
 
             $scope.newPerson.AddressOccupations.push(newOccpuation);
             
+        }
+
+
+        $scope.searchResult = [];
+        $scope.searchTenants = function (person) {
+            person.AddressOwnerships = [];
+            person.AddressOccupations = [];
+            person.PersonAttributes = [];
+            if (person.DateOfBirth == undefined || person.DateOfBirth == null)
+                    person.DateOfBirth = new Date();
+
+            SearchTenants(person).then(function (result) {
+                if (result.success) {
+                    $scope.searchResult = result.data;
+
+                } else {
+                    $scope.searchResult = [];
+                }
+            });
         }
     }
 })();
