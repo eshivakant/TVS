@@ -22,6 +22,14 @@ namespace TVS.WebApp.Controllers
             _context = context;
         }
 
+        //[HttpGet]
+        //[AllowAnonymous]
+        //[Route("[action]/{role}")]
+        //public Person GetLandlord2(string role)
+        //{
+        //    return GetLandlord(role);
+        //}
+
         [HttpGet]
         [AllowAnonymous]
         public Person GetLandlord([FromQuery]string role)

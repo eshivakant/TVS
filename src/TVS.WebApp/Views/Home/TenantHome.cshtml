@@ -5,8 +5,9 @@
 
 @section AddToHead
 {
-<link href="~/css/starrating.css" rel="stylesheet" />
+    <link href="~/css/starrating.css" rel="stylesheet" />
     <script src="~/app/controllers/ratingscontroller.js"></script>
+<script src="~/app/controllers/tenantdashboardcontroller.js"></script>
 }
 
 <h2>Welcome to your account account page</h2>
@@ -16,17 +17,87 @@
     <h1>Your overall reputation</h1>
     <div star-rating ng-model="rating.rating1" max="10" on-rating-select="rating.rateFunction(rating)"></div>
     @*<star-rating ng-model="rating.rating2" readonly="rating.isReadonly"></star-rating>
-    <label>
-        <input type="checkbox" ng-model="rating.isReadonly" />
-        Is Readonly
-    </label>
+        <label>
+            <input type="checkbox" ng-model="rating.isReadonly" />
+            Is Readonly
+        </label>
 
-    <div><strong>Rating 1:</strong> {{rating.rating1}}</div>
-    <div><strong>Rating 2:</strong> {{rating.rating2}}</div>*@
+        <div><strong>Rating 1:</strong> {{rating.rating1}}</div>
+        <div><strong>Rating 2:</strong> {{rating.rating2}}</div>*@
 
-  
+
+</div>
+
+<div class="center-block" style="margin: 50px">
+    <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>Tenant Verification and Reviews</h4></div>
+            <div class="panel-body">
+                <div>
+                    <ul>
+                        <li>Check reviews from previous landlords.</li>
+                        <li>Know about his previous police verification.</li>
+                        <li>Request a new police verification.</li>
+                        <li>Know about his past financial issues.</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-primary btn-circle btn-xl pull-right"><i class="glyphicon glyphicon-ok"></i></button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>Report a new tenant at your property</h4></div>
+            <div class="panel-body">
+                <div>
+                    <ul>
+                        <li>Keep us and yourself updated.</li>
+                        <li>Get information about your new tenants as soon as we get them.</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-info btn-circle btn-xl pull-right"><i class="glyphicon glyphicon-pencil"></i></button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>Review your tenants</h4></div>
+            <div class="panel-body">
+                <div>
+                    <ul>
+                        <li>Keep everyone updated about your experiences with your tenants.</li>
+                        <li>Tenants will never take undue advantage if you make a habbit to put reviews about them.</li>
+                        <li>This is your right and ultimate power.</li>
+                        <li>Review your current and past tenants.</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-danger btn-circle btn-xl pull-right"><i class="glyphicon glyphicon-cog"></i></button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>View Reviews done by you</h4></div>
+            <div class="panel-body">
+                <div>
+                    <ul>
+                        <li>View reviews done by you previously.</li>
+                        <li>Add to comments done by you previously.</li>
+                        <li>Report a new event e.g. unpaid bills etc.</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-circle btn-xl pull-right"><i class="glyphicon glyphicon-home"></i></button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
-<p>Go buddy go!</p>
+<style>
+    .btn-circle.btn-xl {
+        width: 70px;
+        height: 70px;
+        padding: 10px 16px;
+        font-size: 24px;
+        line-height: 1.33;
+        border-radius: 35px;
+    }
+</style>
+
+
 
